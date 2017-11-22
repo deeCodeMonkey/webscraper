@@ -1,0 +1,14 @@
+﻿{{#if articles}}
+{{#each articles}}
+
+<div class="column" style="padding-top: 20px;">
+            <div class="well text-center">
+                <h5 class="">Headline: {{headline}}</h5>
+                <h5 class="">Link: {{link}}</h5>
+                <button type="button" class="btn btn-primary saveArticle" data-headline="{{headline}}" data-link="{{link}}">Save Article</button>
+            </div>
+</div>
+{{/each}}
+{{else}}
+<p>No Articles.</p>
+{{/if}}

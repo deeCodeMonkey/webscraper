@@ -1,0 +1,16 @@
+﻿{{#if articles}}
+{{#each articles}}
+
+<div class="column" id="article" style="padding-top: 20px;">
+            <div class="well text-center">
+                <h5 class="">Headline: {{headline}}</h5>
+                <h5 class="">Link: {{link}}</h5>
+                <button type="button" class="btn btn-danger deleteArticle" data-articleId="{{id}}">Delete Article</button>
+                &nbsp;
+                <button type="button" class="btn btn-success addNote">Add Note</button>
+            </div>
+</div>
+{{/each}}
+{{else}}
+<p>No Articles.</p>
+{{/if}}

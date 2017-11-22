@@ -1,0 +1,30 @@
+{
+  "name": "webscraper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deeCodeMonkey/webscraper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deeCodeMonkey/webscraper/issues"
+  },
+  "homepage": "https://github.com/deeCodeMonkey/webscraper#readme",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "mocha": "^4.0.1",
+    "mongoose": "^4.13.4",
+    "request": "^2.83.0"
+  }
+}
