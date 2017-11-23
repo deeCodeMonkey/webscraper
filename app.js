@@ -100,6 +100,16 @@ app.getNote = function (articleId) {
 
 };
 
+app.getNoteById = function (noteId) {
+    return db.Note
+        .findOne({ _id: noteId });
+};
+
+app.getArticleById = function (articleId) {
+    return db.Article
+        .findOne({ _id: articleId });
+};
+
 app.scrapeURL = function (url) {
     return new Promise((resolve, reject) => {
         request(url, (error, response, html) => {

@@ -61,9 +61,9 @@ $('.addNote').on("click", function () {
 
 
 // Delete Note badge
-$('.badge').on("click", function () {
+$('.deleteNote').on("click", function () {
     //obtains variables from the Form
-    let id = $(this).data("noteId");
+    let id = $(this).data("idnote");
     let url = '/note/delete/' + id;
 
     //console.log('Ran juery ' + id);

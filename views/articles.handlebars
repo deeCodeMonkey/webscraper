@@ -8,9 +8,9 @@
         {{#if note}}
         <h5 class="">Notes:</h5>
         {{#each note}}
-        <div class="well" style="background-color: peachpuff;">
+        <div id="{{_id}}" class="well" style="background-color: peachpuff;">
             <h6 class="">Title: {{title}} | Content: {{body}}</h6>  
-            <span class="badge" data-dismiss="modal" data-noteId="{{_id}}">Delete Note</span>
+            <span class="badge deleteNote" data-idnote="{{_id}}">Delete Note</span>
         </div>
         {{/each}}
         {{else}}
