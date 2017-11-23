@@ -23,6 +23,64 @@ $('.saveArticle').on("click", function () {
 });
 
 
+// Delete Article button
+$('.deleteArticle').on("click", function () {
+    
+    let id = $(this).data("articleid");
+    let url = '/article/delete/' + id;
+
+    //console.log('Ran juery ' + id);
+
+    $.ajax({
+        url: url,
+        type: 'DELETE',
+        success: function (result) {
+            //console.log(JSON.stringify(result));
+            $('#' + result._id).remove();
+            //window.location = '/scrape/articles';
+        }, error: function (err) {
+            console.log('Jquery Error ' + err);
+        }
+    });
+});
+
+
+$('.addNote').on("click", function () {
+    let id = $(this).data("articleid");
+    let noteTitle = $(this).data("noteTitle");
+    let noteBody = $(this).data("noteBody");
+    
+//assign modal route to id
+    $('#addNoteForm').attr('action', '/article/' + id);
+    
+    //before showing modal to user, clear input fields
+    $('#title').text(noteTitle);
+    $('#body').text(noteBody);
+    
+});
+
+
+// Delete Note badge
+$('.badge').on("click", function () {
+    //obtains variables from the Form
+    let id = $(this).data("noteId");
+    let url = '/note/delete/' + id;
+
+    //console.log('Ran juery ' + id);
+
+    $.ajax({
+        url: url,
+        type: 'DELETE',
+        success: function (result) {
+            //console.log(JSON.stringify(result));
+            $('#' + result._id).remove();
+            //window.location = '/scrape/articles';
+        }, error: function (err) {
+            console.log('Jquery Error ' + err);
+        }
+    });
+});
+
 
 
 
