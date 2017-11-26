@@ -38,13 +38,13 @@ var db = require('./models');
 
 var url = 'http://www.cnn.com/us'
 
-//db.Article.remove({}, function (err) {
-//    console.log('Article collection removed')
-//});
+db.Article.remove({}, function (err) {
+    console.log('Article collection removed')
+});
 
-//db.Note.remove({}, function (err) {
-//    console.log('Note collection removed')
-//});
+db.Note.remove({}, function (err) {
+    console.log('Note collection removed')
+});
 
 //reformat link
 app.formatLink = function (link, rootAddress) {
@@ -63,13 +63,22 @@ app.saveArticle = function (headline, link) {
 
 app.deleteArticle = function (id) {
     return new Promise((resolve, reject) => {
-        db.Article.findOneAndRemove({ '_id': id }, function (err, doc) {
+
+
+        db.Article.findById( id, function (err, doc) {
             if (!err) {
-                console.log('deleteArticle Successful ' + id);
-                resolve(doc);
+                console.log('Deleting notes: ' + doc.note);
+                db.Note.remove({ _id: { "$in": doc.note.map(function (o) { return mongoose.Types.ObjectId(o); }) } });
+                db.Article.remove({ _id: id }).then((article) => {
+                    console.log('deleteArticle Successful ' + id);
+                    resolve(doc);
+                }).catch((err1) => {
+                    console.log('deleteArticle Error ' + err1);
+                    reject(err1);
+                });
             } else {
                 console.log('deleteArticle Error ' + err);
-                reject(error);
+                reject(err);
             }
         });
     });
