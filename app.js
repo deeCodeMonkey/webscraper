@@ -20,21 +20,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-//database port
-mongoose.connect("mongodb://localhost:27017/webScraper", {
-    useMongoClient: true
-});
+
+
+
+//HEROKU Mongoose
+if (process.env.MONGODB_URI) {
+    mongoose.connect(process.env.MONGODB_URI);
+} else {
+    //database local port
+    mongoose.connect("mongodb://localhost:27017/webScraper", {
+        useMongoClient: true
+    });
+
+}
+
 
 //Bring over mongoose constructors
 var db = require('./models');
-
-//scrap articles x
-//scrap new articles- add to list x
-//save article x
-//delete article ===== would delete but will not re-direct page, first result was null, second result deleted - all from same click event
-//add note to article  x
-//review note
-//remove note
 
 var url = 'http://www.cnn.com/us'
 
