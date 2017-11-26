@@ -64,11 +64,13 @@ app.saveArticle = function (headline, link) {
 app.deleteArticle = function (id) {
     return new Promise((resolve, reject) => {
 
-
         db.Article.findById( id, function (err, doc) {
             if (!err) {
-                console.log('Deleting notes: ' + doc.note);
-                db.Note.remove({ _id: { "$in": doc.note.map(function (o) { return mongoose.Types.ObjectId(o); }) } });
+                 for (let i = 0; i < doc.note.length; i++){
+                    db.Note.findByIdAndRemove({ _id: doc.note[i]}, (deletedNote) => {
+                        console.log('DELETED NOTE ' + doc.note[i]);
+                    });
+                };
                 db.Article.remove({ _id: id }).then((article) => {
                     console.log('deleteArticle Successful ' + id);
                     resolve(doc);
@@ -106,7 +108,6 @@ app.getNote = function (articleId) {
         .findOne({ _id: articleId })
         .populate("note")
         .exec();
-
 };
 
 app.getNoteById = function (noteId) {
