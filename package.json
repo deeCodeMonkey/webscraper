@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/deeCodeMonkey/webscraper.git"
   },
+  "engines": {
+    "node": "^8.5.0"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
